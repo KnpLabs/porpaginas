@@ -10,13 +10,17 @@
     "autoload": {
         "psr-0": {"Porpaginas\\": "src/"}
     },
+    "autoload-dev": {
+        "psr-0": {"Porpaginas\\": "tests/"}
+    },
     "require-dev": {
         "doctrine/orm": ">=2.2",
         "pagerfanta/pagerfanta": "@stable",
         "knplabs/knp-components": "@stable",
         "symfony/event-dispatcher": "@stable",
         "twig/twig": "@stable",
-        "phake/phake": "@stable"
+        "phake/phake": "@stable",
+        "phpunit/phpunit": "^5.0"
     },
     "suggest": {
         "pagerfanta/pagerfanta": "For rendering pagination with Pagerfanta"
