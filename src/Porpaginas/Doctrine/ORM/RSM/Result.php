@@ -13,14 +13,16 @@ final class Result implements \Porpaginas\Result
      * @param EntityManagerInterface  $em
      * @param ResultSetMappingBuilder $rsm
      * @param QueryBuilder            $qb
-     * @param callable                $countQueryBuilderModifier
+     * @param callable|null           $countQueryBuilderModifier
      */
-    public function __construct(EntityManagerInterface $em, ResultSetMappingBuilder $rsm, QueryBuilder $qb, callable $countQueryBuilderModifier)
+    public function __construct(EntityManagerInterface $em, ResultSetMappingBuilder $rsm, QueryBuilder $qb, \Closure $countQueryBuilderModifier = null)
     {
         $this->em  = $em;
         $this->rsm = $rsm;
         $this->qb  = $qb;
-        $this->countQueryBuilderModifier = $countQueryBuilderModifier;
+        $this->countQueryBuilderModifier = $countQueryBuilderModifier ?: function($qb) {
+            return $qb->select('count(*)');
+        };
     }
 
     public function take($offset, $limit)

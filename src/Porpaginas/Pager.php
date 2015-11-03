@@ -2,6 +2,8 @@
 
 namespace Porpaginas;
 
+use Porpaginas\Page;
+
 final class Pager
 {
     private $totalCount;
@@ -15,6 +17,10 @@ final class Pager
         $this->currentPage = max(1, $currentPage);
     }
 
+    public static function fromPage(Page $page)
+    {
+        return new self($page->totalCount(), $page->getCurrentLimit(), $page->getCurrentPage());
+    }
 
     public function isCurrent($page)
     {
